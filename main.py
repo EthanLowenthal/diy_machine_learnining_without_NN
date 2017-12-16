@@ -3,7 +3,7 @@ import pygame, random, math, time, json
 
 car_amount = 200
 save_file = 'best_cars_trained.json'
-with open('saved_data/'+save_file, 'r') as f:
+with open('./saved_data/'+save_file, 'r') as f:
         best_cars = json.load(f)
 if len(best_cars['cars']) < car_amount:
     best_cars = best_cars['cars']
@@ -260,7 +260,7 @@ while True:
             cars, dead_cars = generate_new_cars(dead_cars, car_amount, cars)
 
         if generation % 10 == 0:
-            with open('saved_data/'+save_file, 'w') as f:
+            with open('./saved_data/'+save_file, 'w') as f:
                 json.dump(best_cars, f)
 
         gtime = current_milli_time()
@@ -274,7 +274,7 @@ while True:
 
         if event.type == pygame.QUIT:
             best_cars = {'cars':best_cars[-car_amount:]}
-            with open('saved_data/'+save_file, 'w') as f:
+            with open('./saved_data/'+save_file, 'w') as f:
                 json.dump(best_cars, f)
             quit()
 
